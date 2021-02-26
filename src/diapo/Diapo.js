@@ -1,10 +1,25 @@
 import React from 'react';
 import Slide from 'react-reveal/Slide';
+import Element from '../Elements/Element';
 
-function Diapo({ diapo }){
-    return <div  style={{border:"1px solid #000", height:"580px", width: "600px",margin:50}}>
+
+function Diapo({ diapo, diapoElements }){
+  
+    return <div  style={{border:"1px solid #000", height:"550px",
+                         width: "90%",margin:10}}>
    <Slide left>
-   <h1>Diapo {diapo}</h1>
+    <h2 style={{border:"1px solid #000", margin:5, padding:5}}>Diapo {diapo}</h2>
+    <div>
+        {
+             diapoElements.map(element =>{
+                if(element.numD == diapo)
+                 return <Element key={element.numD}
+                                 diapoElements={diapoElements} 
+                                 element={element} />
+                else return "";
+            })
+        }
+    </div>
    </Slide>
     </div>
 }

@@ -8,6 +8,8 @@ import { useAuth } from "./shared/hooks/auth-hook";
 import LoadingSpinner from "./shared/components/uiElements/LoadingSpinner";
 import MakeCours from "./Cours/makeCours";
 import ShowCours from "./Cours/showCours";
+import { useCours } from "./shared/hooks/cours-hook";
+import { CoursContext } from "./shared/context/cours-context";
 
 
 
@@ -18,6 +20,19 @@ const Dashboard = React.lazy(() => import("./dashboard/pages/dashboard"));
 
 const App = () => {
   const { token, userId, login, logout } = useAuth();
+  const {
+    onAddDiapo,
+    prevDiapo,
+    nextDiapo,
+    numD,
+    diapos,
+    diapoElements,
+    addElement,
+    specDiapo,
+    showCours,
+    show,
+    currentDiapo
+} = useCours();
   let routes;
   if (token) {
     routes = (
@@ -38,13 +53,18 @@ const App = () => {
   }
 
   return (
-    <AuthContext.Provider
+    <CoursContext.Provider
       value={{
-        isLoggedIn: !!token,
-        token: token,
-        userId: userId,
-        login: login,
-        logout: logout
+       onAddDiapo,
+       prevDiapo,
+       nextDiapo,
+       numD,
+       diapos,
+       diapoElements,addElement,
+       specDiapo,
+       show,
+       showCours,
+       currentDiapo
       }}>
       <Router>
       
@@ -58,7 +78,7 @@ const App = () => {
           </Suspense>
         </main>
       </Router>
-    </AuthContext.Provider>
+    </CoursContext.Provider>
   );
 }
 

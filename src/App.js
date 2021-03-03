@@ -31,7 +31,16 @@ const App = () => {
     specDiapo,
     showCours,
     show,
-    currentDiapo
+    currentDiapo,
+    activeElement,
+    getActiveEement,
+    changeActiveElement,
+    onChangeStyle,
+    onChangePosition,
+    onChangeElement,
+    onChangeHeight,
+    onChangeWidth,
+    onDeleteElement
 } = useCours();
   let routes;
   if (token) {
@@ -64,7 +73,16 @@ const App = () => {
        specDiapo,
        show,
        showCours,
-       currentDiapo
+       currentDiapo,
+       activeElement,
+       getActiveEement,
+       changeActiveElement,
+       onChangeStyle,
+       onChangePosition,
+       onChangeElement,
+       onChangeHeight,
+       onChangeWidth,
+       onDeleteElement
       }}>
       <Router>
       

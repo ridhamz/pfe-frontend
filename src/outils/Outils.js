@@ -11,6 +11,22 @@ function Outils({ addElement }){
 
    <button className="btn btn-danger" style={{marginLeft:10}}
            onClick={()=>addElement("video")}>Add Video</button>
+
+    
+<button className="btn btn-danger" style={{marginLeft:10}}
+           onClick={()=>addElement("square")}>Add Square</button>
+    
+    <button className="btn btn-danger" style={{marginLeft:10}}
+           onClick={()=>addElement("cercle")}>Add Cercle</button>
+    
+    <button className="btn btn-danger" style={{marginLeft:10}}
+           onClick={()=>addElement("rectangle")}>Add Rectangle</button>
+    
+    <button className="btn btn-danger" style={{marginLeft:10}}
+           onClick={()=>addElement("orderlist")}>Add Order List</button>
+    
+    <button className="btn btn-danger" style={{marginLeft:10}}
+           onClick={()=>addElement("unorderlist")}>Add Unorder List</button>
        </div>
     </div>
 }

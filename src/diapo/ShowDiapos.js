@@ -1,26 +1,36 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useContext } from 'react';
 import Slide from 'react-reveal/Slide';
 import Element from '../Elements/Element';
+import { CoursContext } from '../shared/context/cours-context';
 
-function ShowDiapos({ diapos, diapoElements }){
+
+function ShowDiapos({ setActiveElement }){
+    const cours = useContext(CoursContext);
+   
+  const {
+      
+      numD,
+      diapoElements,
+      
+  } = cours;
     return (
-        <Fragment>
-            {
-                diapos.map(item => (
-                    <Slide key={Math.random()} left>
+      
                     
-                    <div  style={{border:"1px solid #000", height:"550px", 
-                    width:"90%",margin:10, overflow:"hidden"}}>
-                      <Slide right>
-                       <h2 style={{border:"1px solid #000", margin:5, padding:5}}>
-                           Diapo {item}
+                   
+                    
+                    <div  style={{border:"1px solid #000", height:"510px", 
+                    width:"90%",margin:2, overflow:"hidden"}}>
+                      <Slide>
+                       <h2 style={{border:"1px solid #000", margin:3, padding:3}}>
+                           Diapo {numD}
                         </h2>
                         <div>
                             {
                               diapoElements.map(element =>{
-                                  if(element.numD == item)
+                                  if(element.numD == numD)
                                     return <Element key={Math.random()} element={element}
-                                                   diapoElements={diapoElements}  />
+                                                     setActiveElement={setActiveElement}
+                                                     diapoElements={diapoElements}  />
                                   else return "";
                               })
                             }
@@ -28,10 +38,7 @@ function ShowDiapos({ diapos, diapoElements }){
                        
                        </Slide>
                        </div>
-                       </Slide>
-                ))
-            }
-        </Fragment>
+                     
     )
    
 }

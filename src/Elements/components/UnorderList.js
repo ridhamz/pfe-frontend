@@ -4,7 +4,7 @@ import {Rnd} from 'react-rnd';
 import { CoursContext } from '../../shared/context/cours-context';
 
 
-function Text({ element, diapoElements }){
+function UnorderList({ element, diapoElements }){
     const cours = useContext(CoursContext);
     const { changeActiveElement,
         onChangeElement, onChangePosition, 
@@ -13,8 +13,8 @@ function Text({ element, diapoElements }){
         x:10,
         y:10
     }) 
-    const [width, setWidth] = useState(600)
-    const [height, setHight] = useState(50)
+    const [width, setWidth] = useState(200)
+    const [height, setHight] = useState(200)
 
     
     const [value, setValue] = useState()
@@ -54,18 +54,9 @@ function Text({ element, diapoElements }){
                size={{ width: width,  height: height }}
                position={{ x: position.x, y:position.y }}
                onDrag={(e, d) => {
-                if(d.x > 167) return "";
-                if(d.x < 6) return "";
-                if(d.y < -1) return "";
-                if(d.y > 311) return "";
                 setPosition({ x: d.x, y: d.y }) }}
 
                onDragStop={(e, d) => {
-               
-                if(d.x > 167) return "";
-                if(d.x < 6) return "";
-                if(d.y < -1) return "";
-                if(d.y > 311) return "";
                setPosition({ x: d.x, y: d.y }) 
                onChangePosition(element.id, { x: d.x, y: d.y }, diapoElements)
              }}
@@ -85,25 +76,25 @@ function Text({ element, diapoElements }){
                            onChangeWidth(element.id,ref.style.width , diapoElements)
                            onChangeHeight(element.id,ref.style.height , diapoElements)
         }}>
-    
-    <div style={{
-        padding:5 ,
-         border : activeElement && activeElement.id == element.id ? "2px dashed #000": "",
-    }}>
-     <textarea onChange={(e)=>{ onChangeElement(element, e.target.value, diapoElements)}}
+     <div style={{
+         width:"100%",
+         border: activeElement && activeElement.id == element.id ? "2px dashed #000" : "",}}>
+     <ul onChange={(e)=>{ onChangeElement(element, e.target.value, diapoElements)}}
               onClick={()=>{
                 if(activeElement && activeElement.id == element .id) return;
                   changeActiveElement({...element})}}     
-              style={{padding:5,width: "100%", height:height, resize:"none",
+              style={{padding:5,
+                width:"100%", height:"100%",
                        color:style.color,
                        fontSize: style.fontSize,
                        textAlign:style.textAlign,
-                      }}
-                       autoFocus={activeElement && activeElement.id == element.id}>
-     {element.value}
-    </textarea>
-    </div>
+                       listStyle: " inside"}}>
+        {element.values.length == 0 && "List has no item"}
+        {element.values.map(item =><li key={item}>{item}</li>)}
+     
+    </ul>
+</div>
     </Rnd>
 }
 
-export default Text;
+export default UnorderList;

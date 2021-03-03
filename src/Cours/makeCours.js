@@ -7,11 +7,13 @@ import { useCours } from "../shared/hooks/cours-hook";
 import Slide from 'react-reveal/Slide';
 import Outils from "../outils/Outils";
 import { CoursContext } from "../shared/context/cours-context";
+import GetActiveEement from "../activeElement/activeElement";
 
 
 
 function MakeCours() {
    
+  
   const cours = useContext(CoursContext);
    
   const {
@@ -25,7 +27,8 @@ function MakeCours() {
       specDiapo,
       showCours,
       show,
-      currentDiapo
+      currentDiapo,
+      activeElement
   } = cours;
    
 
@@ -35,7 +38,7 @@ function MakeCours() {
     <Outils addElement={addElement} />
     <section className="row" style={{marginTop:"90px"}} >
 
-      <div className="col-md-2" >
+      <div className="col-md-1" >
         <div style={{position: "absolute", left: "0"}}>
          <div style={{position:"fixed", width:"50px"}}>
 
@@ -45,20 +48,24 @@ function MakeCours() {
         {
          diapos.map(item => (
             <button className="btn btn-primary" style={{margin:20}}
-           onClick={()=> specDiapo(item)}
+            onClick={()=> specDiapo(item)}
           >Diapo {item }</button>
           ))
         }
         </div>
         </div>
       </div>
-
-      <div className="col-md-10">
-        { numD > 0 && false? <Diapo diapo={numD} diapoElements={diapoElements}  /> :""}
-        {true && <ShowDiapos  diapos={diapos} diapoElements={diapoElements} />}
+     
+      <div className="col-md-8">
+        { numD > 0 && false? <Diapo diapo={numD} diapos={diapos}  diapoElements={diapoElements}  /> :""}
+        {numD > 0  && <ShowDiapos />}
       </div>
 
-     
+      
+
+      <div className="col-md-2" style={{border: "1px solid blue"}}>
+       { <GetActiveEement />}
+      </div>
     </section>
    
       
